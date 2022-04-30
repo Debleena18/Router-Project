@@ -1,6 +1,7 @@
 import { Fragment } from 'react';
-import { useParams, Route } from 'react-router-dom';
-import HighlightenedQuote from '../components/quotes/HighlightedQuote';
+import { useParams, Route, Link, useRouteMatch } from 'react-router-dom';
+
+import HighlightedQuote from '../components/quotes/HighlightedQuote';
 import Comments from '../components/comments/Comments';
 
 const DUMMY_QUOTES = [
@@ -9,16 +10,27 @@ const DUMMY_QUOTES = [
 ];
 
 const QuoteDetail = () => {
+  const match = useRouteMatch();
   const params = useParams();
-  const quote = DUMMY_QUOTES.find(quote => quote.id === params.quoteId);
+
+  const quote = DUMMY_QUOTES.find((quote) => quote.id === params.quoteId);
 
   if (!quote) {
-    return <p>No Quotes</p>
+    return <p>No quote found!</p>;
   }
+
+  //Nested Routes
   return (
     <Fragment>
-      <HighlightenedQuote text= {quote.text} author= {quote.author} />
-      <Route path={`/quotes/${params.quoteId}/comments`}>
+      <HighlightedQuote text={quote.text} author={quote.author} />
+      <Route path={match.path} exact> 
+        <div className='centered'>
+          <Link className='btn--flat' to={`${match.url}/comments`}>
+            Load Comments
+          </Link>
+        </div>
+      </Route>
+      <Route path={`${match.path}/comments`}>
         <Comments />
       </Route>
     </Fragment>
