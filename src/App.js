@@ -3,8 +3,8 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import AllQuotes from './pages/AllQuotes';
 import QuoteDetail from './pages/QuoteDetail';
 import NewQuote from './pages/NewQuote';
-import Layout from './components/layout/Layout';
 import NotFound from './pages/NotFound';
+import Layout from './components/layout/Layout';
 
 function App() {
   return (
@@ -22,12 +22,12 @@ function App() {
         <Route path='/new-quote'>
           <NewQuote />
         </Route>
-        <Route path='*'> 
-          <NotFound/>
-        </Route> //This characters signals to react-router that any url that doesn't matches above will match here and render "NotFound"
+        <Route path='*'>
+          <NotFound />
+        </Route>
       </Switch>
     </Layout>
   );
 }
-
+//This (*) characters signals to react-router that any url that doesn't matches above will match here and render "NotFound"
 export default App;
