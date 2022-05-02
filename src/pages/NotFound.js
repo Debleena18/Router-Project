@@ -1,11 +1,11 @@
 //This will work if we input a wrong url.
 
 const NotFound = () => {
-    return (
-      <div className='centered'>
-        <p>Page not found!</p>
-      </div>
-    );
-  };
-  
-  export default NotFound;
+  return (
+    <div className='centered'>
+      <p>Page not found!</p>
+    </div>
+  );
+};
+
+export default NotFound;
